@@ -48,3 +48,36 @@ class Google_maps_api():
         print(result_get.text)
         return result_get
 
+
+    """Метод для изменения новой локации"""
+    @staticmethod
+    def update_new_place(place_id):
+
+        json_for_update_new_place = {
+            "place_id": place_id,
+            "address": "100 Lenina street, RU",
+            "key": "qaclick123"
+        }
+
+        put_resource = "/maps/api/place/update/json"   #   ресурс метода PUT
+        put_url = base_url + put_resource + key
+        print(put_url)
+        result_put = Http_methods.put(put_url, json_for_update_new_place)
+        print(result_put.text)
+        return result_put
+
+
+    """Метод для удаления новой локации"""
+
+    @staticmethod
+    def delete_new_place(place_id):
+        json_for_delete_new_place = {
+            "place_id": place_id,
+        }
+
+        delete_resource = "/maps/api/place/delete/json"  # ресурс метода DELETE
+        delete_url = base_url + delete_resource + key
+        print(delete_url)
+        result_delete = Http_methods.delete(delete_url, json_for_delete_new_place)
+        print(result_delete.text)
+        return result_delete

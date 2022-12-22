@@ -25,4 +25,26 @@ class Checking():
         print("Все поля присутствуют.")
 
 
+    """Метод для проверки значений обязательных полей в ответах запросов"""
+
+    @staticmethod
+    def check_json_value(response: Response, field_name, expected_value):
+        check = response.json()
+        check_info = check.get(field_name)
+        assert check_info == expected_value
+        print(field_name + " верен!")
+
+
+    """Метод для проверки на наличие слова в ответе запроса"""
+    @staticmethod
+    def check_json_search_word_in_value(response: Response, field_name, search_world):
+        check = response.json()
+        check_info = check.get(field_name)
+        if search_world in check_info:
+            print("Слово " + search_world + " содержится в ответе")
+        else:
+            print("Слово " + search_world + " отсутствует в ответе")
+
+
+
 
